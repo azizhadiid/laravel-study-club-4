@@ -7,6 +7,86 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Root from study club
+// Route::get('/dashboard', function () {
+//     return view('welcome');
+// });
+
+Route::get('/tampilan', function () {
+    return view('tampilan');
+});
+
+// Form Study
+// Route::get('/tampilan/{id}', function ($id) {
+//     return view('tampilan', ['id' => $id]);
+// });
+
+Route::get('/tampilan/{id}-{id2}', function ($id, $id2) {
+    return view('tampilan', [
+        'id1' => $id,
+        'id2' => $id2
+    ]);
+});
+
+// latihan 2
+// Route::get('/tampilan/{nama}/{asal_daerah}/{prodi}/{angkatan}', function ($nama, $asal_daerah, $prodi, $angkatan) {
+//     return view('exercise2', [
+//         'nama' => $nama,
+//         'asal_daerah' => $asal_daerah,
+//         'prodi' => $prodi,
+//         'angkatan' => $angkatan
+//     ]);
+// });
+
+// Mengmabil blade template
+Route::get('/dashboard', function () {
+    return view('latihan2.dashboard');
+})->name('dashboard');
+Route::get('/daftar', function () {
+    return view('latihan2.daftar');
+})->name('daftar');
+
+// From Me
+Route::get('/tampilan/{id}', function ($id) {
+    return View::make('tampilan')->with('id', $id);
+});
+
+Route::get('/tampilan/{nama}/{asal_daerah}/{prodi}/{angkatan}', function ($nama, $asal_daerah, $prodi, $angkatan) {
+    $data = [
+        [
+            'nama' => $nama,
+            'asal_daerah' => $asal_daerah,
+            'prodi' => $prodi,
+            'angkatan' => $angkatan
+        ]
+    ];
+    return View::make('exercise2')->with('data', $data);
+});
+
+// Ujian day 2
+Route::get('/my/nama', function () {
+    return view('ujian.nama');
+})->name('my.nama');
+
+Route::get('/my/asal-daerah', function () {
+    return view('ujian.asal-daerah');
+})->name('my.asal_daerah');
+
+Route::get('/my/prodi', function () {
+    return view('ujian.prodi');
+})->name('my.prodi');
+
+Route::get('/my/angkatan', function () {
+    return view('ujian.angkatan');
+})->name('my.angkatan');
+
+Route::get('/my/teman', function () {
+    $data = ['Hilmy', 'Agus', 'Irfan', 'Bagus', 'Agus', 'Budi'];
+    return View::make('ujian.teman')->with('data', $data);
+})->name('my.teman');
+
+
+// Day 1
 Route::get('/home', function () {
     $data = ['Aziz', 'Agus', 'Hilmy'];
 
