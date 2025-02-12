@@ -1,11 +1,77 @@
 <?php
 
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\StudentController;
+use App\Models\Product;
+use App\Models\Student;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Latihan
+Route::get('/product', [ProductController::class, 'index']);
+
+Route::get("/product/create", function () {
+    Product::create([
+        "code" => "143",
+        "nama" => "Asep",
+        "description" => "TI",
+        "qty" => 2025,
+        "price" => 17155.37
+    ]);
+});
+
+Route::get("/product/update/{id}", function ($id) {
+    Product::find($id)->update([
+        "code" => "143 baru",
+        "nama" => "Asep",
+        "description" => "TI",
+        "qty" => 2025,
+        "price" => 17155.373
+    ]);
+});
+
+Route::get("/product/delete/{id}", function ($id) {
+    Product::find($id)->delete();
+});
+
+
+// Route::get('/students', function () {
+//     $students = Student::all();
+//     return view('student', ["students" => $students]);
+// });
+
+Route::get("/students/create", function () {
+    Student::create([
+        "nim" => "143",
+        "nama" => "Asep",
+        "prodi" => "TI",
+        "angkatan" => "2025",
+        "alamat" => "Jakarta"
+    ]);
+});
+
+Route::get("/students/update/{id}", function ($id) {
+    Student::find($id)->update([
+        "nim" => "143 baru",
+        "nama" => "Asep",
+        "prodi" => "TI",
+        "angkatan" => "2025",
+        "alamat" => "Jakarta"
+    ]);
+});
+
+Route::get("/students/delete/{id}", function ($id) {
+    Student::find($id)->delete();
+});
+
+// From Me
+Route::get('/students', [StudentController::class, 'index']);
+
+// Day 2
 
 // Root from study club
 // Route::get('/dashboard', function () {
