@@ -11,6 +11,29 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Route Index
+Route::get('/students', [StudentController::class, 'index'])->name('students.index');
+
+// Route  Halaman Tambah
+Route::get("/students/add", [StudentController::class, 'add']);
+
+// Route Menambah data mahasiswa
+Route::post('/students/create', [StudentController::class, 'store']);
+
+// Route Detail data mahasiswa
+Route::get('/students/{id}/detail', [StudentController::class, 'show']);
+
+// Route Menampilkan halaman Edit
+Route::get('/students/{id}/edit', [StudentController::class, 'edit']);
+
+// Route Mengedit
+Route::patch('/students/{id}/update', [StudentController::class, 'update']);
+
+// Delete Data Mahasiswa
+Route::get('/students/{id}/delete', [StudentController::class, 'delete']);
+
+// Day 3
+
 // Latihan
 Route::get('/product', [ProductController::class, 'index']);
 
@@ -44,32 +67,32 @@ Route::get("/product/delete/{id}", function ($id) {
 //     return view('student', ["students" => $students]);
 // });
 
-Route::get("/students/create", function () {
-    Student::create([
-        "nim" => "143",
-        "nama" => "Asep",
-        "prodi" => "TI",
-        "angkatan" => "2025",
-        "alamat" => "Jakarta"
-    ]);
-});
+// Route::get("/students/create", function () {
+//     Student::create([
+//         "nim" => "143",
+//         "nama" => "Asep",
+//         "prodi" => "TI",
+//         "angkatan" => "2025",
+//         "alamat" => "Jakarta"
+//     ]);
+// });
 
-Route::get("/students/update/{id}", function ($id) {
-    Student::find($id)->update([
-        "nim" => "143 baru",
-        "nama" => "Asep",
-        "prodi" => "TI",
-        "angkatan" => "2025",
-        "alamat" => "Jakarta"
-    ]);
-});
+// Route::get("/students/update/{id}", function ($id) {
+//     Student::find($id)->update([
+//         "nim" => "143 baru",
+//         "nama" => "Asep",
+//         "prodi" => "TI",
+//         "angkatan" => "2025",
+//         "alamat" => "Jakarta"
+//     ]);
+// });
 
-Route::get("/students/delete/{id}", function ($id) {
-    Student::find($id)->delete();
-});
+// Route::get("/students/delete/{id}", function ($id) {
+//     Student::find($id)->delete();
+// });
 
-// From Me
-Route::get('/students', [StudentController::class, 'index']);
+// // From Me
+// Route::get('/students', [StudentController::class, 'index']);
 
 // Day 2
 
